@@ -1,0 +1,13 @@
+appdirs==1.4.3
+Flask==0.12
+Flask-Bcrypt==0.7.1
+Flask-Login==0.4.0
+gunicorn==19.7.1
+Jinja2==2.9.5
+MarkupSafe==1.0
+pycparser==2.17
+pyparsing==2.2.0
+six==1.10.0
+WTForms==2.1
+lxml==3.7.1
+
