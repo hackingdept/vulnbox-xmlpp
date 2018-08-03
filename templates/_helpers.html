@@ -1,0 +1,33 @@
+{% macro render_field(field) %}
+    <div class="form-group {% if field.errors -%} has-error {%- endif %}">
+        {% if field.type == 'BooleanField' %}
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input name="{{ field.name }}" type="checkbox" {% if field.data -%}checked="checked"{%- endif %}> {{ field.label.text }}
+                        {% for error in field.errors %}
+                            <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </label>
+                </div>
+            </div>
+        {% else %}
+            <label for="input-{{ field.name }}" class="col-sm-2 control-label">{{ field.label.text }}</label>
+            <div class="col-sm-10">
+                {% if field.type == 'PasswordField' %}
+                    {% set type = 'password' %}
+                {% elif field.type == 'FileField' %}
+                    {% set type = 'file' %}
+                {% else %}
+                    {% set type = 'text' %}
+                {% endif %}
+
+                <input name="{{ field.name }}" type="{{ type }}" class="form-control" id="input-{{ field.name }}"
+                       placeholder="{{ field.label.text }}" {% if type == 'text' and field.data -%} value="{{ field.data }}" {%- endif %}>
+                {% for error in field.errors %}
+                    <span class="help-block">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endmacro %}

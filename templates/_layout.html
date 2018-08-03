@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>XML Pretty Printer</title>
+
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+    <link rel="stylesheet" href="/static/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles/styles.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    {% macro active(name) -%}
+        {% if active_page == name -%} active {%- endif %}
+    {%- endmacro %}
+
+    <div class="container">
+        <div class="navbar-header">
+            <img src="/static/images/logo.jpg" class="logo">
+            <a class="navbar-brand" href="/letsfacepython{{ url_for('index') }}">XML Pretty Printer</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                    <li class="{{ active('login') }}"><a href="/letsfacepython{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li class="{{ active('login') }}"><a href="/letsfacepython{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endwith  %}
+
+        {% block content %}{% endblock %}
+    </div>
+</div>
+</body>
+</html>

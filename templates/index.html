@@ -1,0 +1,32 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+    <p> Solution is in /flag.txt file</p>
+    <font color="red">{{ error }}</font>
+    {% if current_user.is_authenticated %}
+        <p>Hello: {{current_user.username}}</p>
+        {% if current_user.username == 'admin' %}
+            <p>Example XML files: <a href="https://www.w3schools.com/xml/xml_examples.asp">XML Examples</a></p>
+            <form method="post" enctype=multipart/form-data>
+                <input type="file" name="file">
+                <input type="submit">
+            </form>
+            {% if xml is defined %}
+                <div>&lt;{{ xml.tag }}&gt;
+                    <div style="padding-left: 20px">{{ xml.text }}</div>
+                    {% for tag in xml recursive %}
+                        <div style="padding-left: 20px">
+                            &lt;{{ tag.tag }}&gt;
+                            <div style="padding-left: 20px">{{ tag.text }}</div>
+                            {{ loop(tag) }}
+                            &lt;/{{ tag.tag }}&gt;
+                        </div>
+                    {% endfor %}
+                    &lt;/{{ xml.tag }}&gt;
+                </div>
+            {% endif %}
+        {% else %}
+            <p>You have to be admin, if you want to use our cool printer!</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}
