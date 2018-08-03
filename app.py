@@ -7,7 +7,7 @@ from user import User, UserDoesntExist
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SECRET_KEY'] = '459169B62F4A6D64'
+app.config['SECRET_KEY'] = ''
 app.config["APPLICATION_ROOT"] = '/letsfacepython/'
 
 login_manager = LoginManager()
