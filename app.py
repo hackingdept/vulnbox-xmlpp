@@ -8,7 +8,7 @@ from user import User, UserDoesntExist
 app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['SECRET_KEY'] = ''
-app.config["APPLICATION_ROOT"] = '/letsfacepython/'
+app.config["APPLICATION_ROOT"] = '/'
 
 login_manager = LoginManager()
 login_manager.init_app(app)

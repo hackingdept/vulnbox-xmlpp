@@ -24,14 +24,14 @@
     <div class="container">
         <div class="navbar-header">
             <img src="/static/images/logo.jpg" class="logo">
-            <a class="navbar-brand" href="/letsfacepython{{ url_for('index') }}">XML Pretty Printer</a>
+            <a class="navbar-brand" href="/{{ url_for('index') }}">XML Pretty Printer</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
-                    <li class="{{ active('login') }}"><a href="/letsfacepython{{ url_for('logout') }}">Logout</a></li>
+                    <li class="{{ active('login') }}"><a href="/{{ url_for('logout') }}">Logout</a></li>
                 {% else %}
-                    <li class="{{ active('login') }}"><a href="/letsfacepython{{ url_for('login') }}">Login</a></li>
+                    <li class="{{ active('login') }}"><a href="/{{ url_for('login') }}">Login</a></li>
                 {% endif %}
             </ul>
         </div>
